@@ -13,9 +13,9 @@ import Layout from "../layouts/Layout.astro";
 <script type="module">
     const jsonPlaceholder = document.querySelector("#json-placeholder");
 
-    const clipboardText =
-        (await navigator.clipboard.readText?.()) ||
-        "Browser not supported or permission denied";
+    const clipboardText = navigator.clipboard.readText
+        ? await navigator.clipboard.readText()
+        : "Browser not supported or permission denied";
 
     try {
         const beautifiedJson = JSON.stringify(
