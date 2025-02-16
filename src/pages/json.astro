@@ -1,19 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
+
 <Layout>
-    <textarea id="json-placeholder" style="width: 100%; height: 96.5vh; border: 0;"  />
+    <textarea
+        id="json-placeholder"
+        style="width: 100%; height: 96.5vh; border: 0;"></textarea>
 </Layout>
 
 <script type="module">
-    const jsonPlaceholder = document.querySelector('#json-placeholder');
+    const jsonPlaceholder = document.querySelector("#json-placeholder");
 
     const clipboardText = await navigator.clipboard.readText();
     try {
-        const beautifiedJson = JSON.stringify(JSON.parse(clipboardText), null, 2);
+        const beautifiedJson = JSON.stringify(
+            JSON.parse(clipboardText),
+            null,
+            2
+        );
         // jsonPlaceholder.innerHTML = beautifiedJson;
         jsonPlaceholder.value = beautifiedJson;
     } catch (error) {
-      jsonPlaceholder.value = clipboardText;
+        jsonPlaceholder.value = clipboardText;
     }
 </script>
