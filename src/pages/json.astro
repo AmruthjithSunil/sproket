@@ -1,0 +1,13 @@
+<textarea id="json-placeholder" style="width: 100%; height: 95vh;"  />
+
+<script type="module">
+//   const button = document.querySelector('button');
+  const jsonPlaceholder = document.querySelector('#json-placeholder');
+
+//   button.addEventListener('click', async () => {
+    const clipboardText = await navigator.clipboard.readText();
+    const beautifiedJson = JSON.stringify(JSON.parse(clipboardText), null, 2);
+    // jsonPlaceholder.innerHTML = beautifiedJson;
+    jsonPlaceholder.value = beautifiedJson;
+//   });
+</script>
