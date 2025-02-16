@@ -5,7 +5,8 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
     <textarea
         id="json-placeholder"
-        style="width: 100%; height: 96.5vh; border: 0;"></textarea>
+        style="width: 96.5vw; height: 96.5vh; border: 0;"
+    />
 </Layout>
 
 <script type="module">
@@ -23,4 +24,8 @@ import Layout from "../layouts/Layout.astro";
     } catch (error) {
         jsonPlaceholder.value = clipboardText;
     }
+    if (clipboardText.trim() === "") {
+        jsonPlaceholder.value = "Nothing in the clipboard";
+    }
 </script>
+  
