@@ -7,26 +7,44 @@ import Layout from "../layouts/Layout.astro";
     <textarea
         id="json-placeholder"
         style="width: 99.7vw; height: 98.97vh; border: 0; resize: none;"
-    />
+    ></textarea>
 </Layout>
 
 <script type="module">
     const jsonPlaceholder = document.querySelector("#json-placeholder");
 
-    const clipboardText = await navigator.clipboard.readText();
+    const clipboardText =
+        (await navigator.clipboard.readText?.()) ||
+        "Browser not supported or permission denied";
+
     try {
         const beautifiedJson = JSON.stringify(
             JSON.parse(clipboardText),
             null,
             2
         );
-        // jsonPlaceholder.innerHTML = beautifiedJson;
         jsonPlaceholder.value = beautifiedJson;
     } catch (error) {
         jsonPlaceholder.value = clipboardText;
     }
+
     if (clipboardText.trim() === "") {
         jsonPlaceholder.value = "Nothing in the clipboard";
     }
+
+    // jsonPlaceholder.addEventListener("paste", async (event) => {
+    //     event.preventDefault();
+    //     const clipboardText = event.clipboardData.getData("text");
+    //     try {
+    //         const beautifiedJson = JSON.stringify(
+    //             JSON.parse(clipboardText),
+    //             null,
+    //             2
+    //         );
+    //         jsonPlaceholder.value = beautifiedJson;
+    //     } catch (error) {
+    //         console.error(error);
+    //         jsonPlaceholder.value = clipboardText;
+    //     }
+    // });
 </script>
-  
